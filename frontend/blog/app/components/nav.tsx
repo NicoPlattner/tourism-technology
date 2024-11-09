@@ -5,7 +5,7 @@ const navItems = {
     name: '⛷️',
   },
   '/areas': {
-    name: 'Ski Gebiete',
+    name: 'Ski Areas',
   }
 }
 

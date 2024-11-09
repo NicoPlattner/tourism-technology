@@ -11,18 +11,18 @@ import { baseUrl } from './sitemap'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Next.js Portfolio Starter',
-    template: '%s | Next.js Portfolio Starter',
+    default: 'Ski Areas',
+    template: '%s | Ski Areas',
   },
-  description: 'This is my portfolio.',
-  openGraph: {
-    title: 'My Portfolio',
-    description: 'This is my portfolio.',
-    url: baseUrl,
-    siteName: 'My Portfolio',
-    locale: 'en_US',
-    type: 'website',
-  },
+  // description: 'This is my portfolio.',
+  // openGraph: {
+  //   title: 'My Portfolio',
+  //   description: 'This is my portfolio.',
+  //   url: baseUrl,
+  //   siteName: 'My Portfolio',
+  //   locale: 'en_US',
+  //   type: 'website',
+  // },
   robots: {
     index: true,
     follow: true,

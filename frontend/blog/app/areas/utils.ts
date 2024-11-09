@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { register } from 'module'
 import path from 'path'
 
 type Metadata = {
@@ -35,28 +36,105 @@ function readMDXFile(filePath) {
   return parseFrontmatter(rawContent)
 }
 
-export function getBlogPosts() {
+export function getSkiRegions() {
+  // regions of Austria
+  return [
+    {
+      name: 'Tyrol',
+      slug: 'tyrol',
+    },
+    {
+      name: 'Salzburg',
+      slug: 'salzburg',
+    },
+    {
+      name: 'Carinthia',
+      slug: 'carinthia',
+    },
+    {
+      name: 'Styria',
+      slug: 'styria',
+    },
+    {
+      name: 'Vorarlberg',
+      slug: 'vorarlberg',
+    },
+    {
+      name: 'Upper Austria',
+      slug: 'upper-austria',
+    },
+    {
+      name: 'Lower Austria',
+      slug: 'lower-austria',
+    },
+    {
+      name: 'Vienna',
+      slug: 'vienna',
+    },
+    {
+      name: 'Burgenland',
+      slug: 'burgenland',
+    },
+  ]
+
+}
+
+export function getSkiAreas() {
   // mock data 
   return [
     {
-      metadata: {
-        title: 'First Ski Area',
-        publishedAt: '2024-01-01',
-        summary: "This could be fun?",
-        image: '/images/first-post.jpg',
-      },
-      slug: 'first-post',
-      content: 'This is the content of the first post.',
+      name: 'Innsbruck Slopes',
+      publishedAt: '2024-01-01',
+      summary: "Great slopes near Innsbruck!",
+      image: '/images/innsbruck-slopes.jpg',
+      region: 'tyrol',
+      slug: 'innsbruck-slopes',
+      content: 'Enjoy the scenic mountains of Innsbruck.',
     },
     {
-      metadata: {
-        title: 'Second Ski Area',
-        publishedAt: '2024-02-01',
-        summary: "This could be fun?",
-        image: '/images/second-post.jpg',
-      },
-      slug: 'second-area',
-      content: 'This is the content of the second post.',
+      name: 'Kitzbühel Ski Paradise',
+      publishedAt: '2024-01-15',
+      summary: "Experience world-class skiing!",
+      image: '/images/kitzbuehel.jpg',
+      region: 'tyrol',
+      slug: 'kitzbuehel-ski-paradise',
+      content: 'Kitzbühel offers premium skiing experiences for all levels.',
+    },
+    {
+      name: 'Carinthia Snow Park',
+      publishedAt: '2024-02-01',
+      summary: "Perfect for snowboarders and freestyle skiers!",
+      image: '/images/carinthia-snow-park.jpg',
+      region: 'carinthia',
+      slug: 'carinthia-snow-park',
+      content: 'Explore Carinthia\'s best snow park with jumps and rails.',
+    },
+    {
+      name: 'Villach Alpine Resort',
+      publishedAt: '2024-02-20',
+      summary: "Relaxing slopes with scenic views.",
+      image: '/images/villach-resort.jpg',
+      region: 'carinthia',
+      slug: 'villach-alpine-resort',
+      content: 'Villach offers a peaceful skiing experience for families and beginners.',
+    },
+    {
+      name: 'Salzburg High Slopes',
+      publishedAt: '2024-03-05',
+      summary: "Challenge yourself with steep runs.",
+      image: '/images/salzburg-high-slopes.jpg',
+      region: 'salzburg',
+      slug: 'salzburg-high-slopes',
+      content: 'The high slopes of Salzburg are known for their challenging trails.',
+    },
+    {
+      name: 'Zell am See Lakeside Trails',
+      publishedAt: '2024-03-15',
+      summary: "Ski by the beautiful lake!",
+      image: '/images/zell-am-see.jpg',
+      region: 'salzburg',
+      slug: 'zell-am-see-lakeside-trails',
+      content: 'A unique skiing experience next to the lake at Zell am See.',
     },
   ]
 }

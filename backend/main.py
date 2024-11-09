@@ -1,9 +1,12 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 import json
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)
+
+load_dotenv()
 
 def load_and_process_pists():
     # Read the JSON file
@@ -28,6 +31,11 @@ def pists():
     data = load_and_process_pists()
     return jsonify(data)
 
+
+@app.route('/stats/<card_id>', methods=['GET'])
+def stats(card_id):
+    data = load_and_process_pists()
+    return jsonify(data)
 
 
 

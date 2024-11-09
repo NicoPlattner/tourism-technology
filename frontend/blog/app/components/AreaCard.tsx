@@ -37,7 +37,7 @@ export function AreaCard({ area, regionSlug, isActive, setActiveCard }: AreaCard
     <motion.div
       layoutId={`card-${area.slug}`}
       onClick={() => setActiveCard(isActive ? null : area)}
-      className={`rounded-lg overflow-hidden shadow-lg cursor-pointer bg-gradient-to-br from-blue-100 to-blue-200 dark:from-gray-700 dark:to-gray-800 ${
+      className={`rounded-lg overflow-hidden shadow-lg cursor-pointer bg-gradient-to-br from-blue-100 to-blue-200 ${
         isActive ? "fixed inset-0 z-50 m-4" : ""
       }`}
       initial={{ opacity: 0.8 }}
@@ -62,7 +62,7 @@ export function AreaCard({ area, regionSlug, isActive, setActiveCard }: AreaCard
       <div className="p-4">
         <motion.h3
           layoutId={`title-${area.slug}`}
-          className="text-xl font-semibold mb-2 text-neutral-900 dark:text-neutral-100"
+          className="text-xl font-semibold mb-2 text-neutral-900"
         >
           {area.name}
         </motion.h3>

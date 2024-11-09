@@ -19,7 +19,7 @@ export function List({ regions }: ListProps) {
           href={`/areas/${region.slug}`}
         >
           <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-            <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+            <p className="text-neutral-900 tracking-tight">
               {region.name}
             </p>
           </div>

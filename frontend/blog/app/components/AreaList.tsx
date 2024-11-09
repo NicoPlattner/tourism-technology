@@ -1,14 +1,15 @@
-// In 'app/components/AreaList.tsx'
+"use client";
 
-import Link from 'next/link';
+import { useState } from "react";
+import { AreaCard } from "./AreaCard";
 
 type Area = {
-  publishedAt: string;
-  region: string;
-  slug: string;
   name: string;
+  publishedAt: string;
   summary: string;
   image?: string;
+  region: string;
+  slug: string;
 };
 
 type AreaListProps = {
@@ -17,21 +18,18 @@ type AreaListProps = {
 };
 
 export function AreaList({ areas, regionSlug }: AreaListProps) {
+  const [activeCard, setActiveCard] = useState<Area | null>(null);
+
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {areas.map((area) => (
-        <Link
+        <AreaCard
           key={area.slug}
-          className="flex flex-col space-y-1 mb-4"
-          href={`/areas/${regionSlug ?? area.region}/${area.slug}`} 
-        >
-          <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-            <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-              {area.name}
-            </p>
-            <p className="text-neutral-500">{area.region}</p>
-          </div>
-        </Link>
+          area={area}
+          regionSlug={regionSlug}
+          isActive={activeCard?.slug === area.slug}
+          setActiveCard={setActiveCard}
+        />
       ))}
     </div>
   );

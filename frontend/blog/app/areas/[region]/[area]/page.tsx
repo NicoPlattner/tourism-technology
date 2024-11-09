@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation'
 import { getSkiAreas } from 'app/areas/utils'
 
 export async function generateStaticParams() {
-  // Generate all static paths for `[region]/[area]`
   const areas = getSkiAreas()
   return areas.map((area) => ({
     region: area.region,

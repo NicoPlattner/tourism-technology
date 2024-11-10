@@ -1,29 +1,61 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import type { Area } from "../AreaCard";
 
-function test(e: Event) {
+type Pist = {
+  color: string;
+  id: number;
+  name: string;
+  speedScore: number;
+  utilizationScore: number;
+};
+
+function showPistStat(e: Event, pists: Pist[], stat: string) {
   e.stopPropagation()
   // Get the <object> element
   const svgObject = document.querySelector("object");
 
-  if (svgObject && svgObject.contentDocument) {
-    // Access the contentDocument of the <object> which contains the SVG
-
-    for (let i = 0; i < 160; i++) {
-      const randomWidth = Math.floor(Math.random() * 8)
-      const path = svgObject.contentDocument.getElementById("p"+i);
+  pists.forEach(pist => {
+    if (svgObject && svgObject.contentDocument) {
+      // Access the contentDocument of the <object> which contains the SVG
   
+      const width = pist[stat]
+      const path = svgObject.contentDocument.getElementById("p"+pist.id);
+
+      console.log(stat);
+      
+      console.log(width);
+      
       if (path) {
         // Modify the strokeWidth of the path element
-        path.style.strokeWidth = '' + randomWidth + 'px';
+        path.style.strokeWidth = '' + width + 'px';
       } else {
         console.log("SVG document not loaded or not found");
       }
     }
-  } 
+  })
 }
 
-export const ExpandedView = ({ area, setActiveCard }: { area: Area; setActiveCard: (area: Area | null) => void }) => (
+export const ExpandedView = ({ area, setActiveCard }: { area: Area; setActiveCard: (area: Area | null) => void }) => {
+  const [pists, setPists] = useState<Pist[]>([]);
+
+  useEffect(() => {
+    const fetchPists = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/pists`);
+        const data = await response.json();
+        setPists(data);        
+      } catch (error) {
+        console.error("Failed to fetch pists:", error);
+      }
+    };
+
+    fetchPists();
+  }, []);
+
+  return (
   <>
     <button
       onClick={() => setActiveCard(null)}
@@ -55,7 +87,7 @@ export const ExpandedView = ({ area, setActiveCard }: { area: Area; setActiveCar
 
       <motion.p layoutId={`region-${area.slug}`} className="text-neutral-500">
         {area.region}
-        <button onClick={(e) => test(e)}>Utilization</button>
+        <button onClick={(e) => showPistStat(e, pists, "speedScore")}>Utilization</button>
 
       </motion.p>
       <motion.div
@@ -70,4 +102,5 @@ export const ExpandedView = ({ area, setActiveCard }: { area: Area; setActiveCar
       </motion.div>
     </div>
   </>
-);
+  )
+};

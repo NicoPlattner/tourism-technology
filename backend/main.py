@@ -6,6 +6,7 @@ from flask_cors import CORS
 import json
 import os
 from dotenv import load_dotenv
+import random
 
 app = Flask(__name__)
 CORS(app)
@@ -17,10 +18,10 @@ def load_and_process_pists():
     with open('pists.json', 'r') as f:
         data = json.load(f)
     
-    # Add additional fields with default or calculated values
+    # Add additional fields with random values
     for item in data:
-        item['speedScore'] = 5  # Default or calculated value for speedScore
-        item['utilizationScore'] = 5  # Default or calculated value for utilizationScore
+        item['speedScore'] = random.randint(1, 10)
+        item['utilizationScore'] = random.randint(1, 10)
 
     return data
 

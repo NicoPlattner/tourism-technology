@@ -19,6 +19,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
+        working-directory: ./backend
         run: |
           python -m venv venv
           source venv/bin/activate
@@ -27,8 +28,9 @@ jobs:
       # Optional: Add step to run tests here (e.g., PyTest)
 
       - name: Zip artifact for deployment
+        working-directory: ./backend
         run: |
-          zip -r release.zip . -x "venv/*" "*.git*"
+          zip -r ../release.zip . -x "venv/*" "*.git*"
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4

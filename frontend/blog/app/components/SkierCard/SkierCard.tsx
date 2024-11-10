@@ -24,15 +24,15 @@ export default function SkierCard({ data }: SkierCardProps) {
       
       <div className="stats-container">
         <div className="stat-box">
-          <div className="stat-number">{data.kilometersSkied} km</div>
+          <div className="stat-number">{data.kilometersSkied.toFixed(2)} km</div>
           <div className="stat-label">Distance</div>
         </div>
         <div className="stat-box">
-          <div className="stat-number">{data.minutesSkied} min</div>
+          <div className="stat-number">{data.minutesSkied.toFixed(2)} min</div>
           <div className="stat-label">Skied</div>
         </div>
         <div className="stat-box">
-          <div className="stat-number">{data.averageSpeed} km/h</div>
+          <div className="stat-number">{data.averageSpeed.toFixed(2)} km/h</div>
           <div className="stat-label">Speed</div>
         </div>
       </div>

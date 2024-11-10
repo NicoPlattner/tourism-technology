@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import type { Area } from "../AreaCard";
+import { getPists } from "app/areas/utils";
 
 type Pist = {
   color: string;
@@ -38,21 +39,20 @@ function showPistStat(e: any, pists: Pist[], stat: string) {
 }
 
 export const ExpandedView = ({ area, setActiveCard }: { area: Area; setActiveCard: (area: Area | null) => void }) => {
-  const [pists, setPists] = useState<Pist[]>([]);
+    const [pists, setPists] = useState<Pist[]>([]);
 
-  useEffect(() => {
-    const fetchPists = async () => {
-      try {
-        const response = await fetch(`http://127.0.0.1:5000/pists`);
-        const data = await response.json();
-        setPists(data);        
-      } catch (error) {
-        console.error("Failed to fetch pists:", error);
-      }
-    };
-
-    fetchPists();
-  }, []);
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const data = await getPists();
+          setPists(data);
+        } catch (error) {
+          console.error("Failed to fetch pists:", error);
+        }
+      };
+  
+      fetchData();
+    }, []);
 
   return (
   <>

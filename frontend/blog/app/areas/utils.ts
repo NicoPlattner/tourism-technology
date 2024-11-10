@@ -1,16 +1,32 @@
 
 
 
-export function getUser(id: string) {
-  return {
-      skiPassNumber: '#1-134-45-450312',
-      averageSpeed: 20,
-      liftsTaken: ['Sonnenbahn Ladis-Fiss', 'Planseggbahn', 'Rastbahn'],
-      kilometersSkied: 15.2,
-      minutesSkied: 202,
-      minutesLifted: 45,
-    }
+export async function getUser(id: string) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/stats/${id}`);
+  const data = await response.json();
+  return data;
 }
+
+type Pist = {
+  color: string;
+  id: number;
+  name: string;
+  speedScore: number;
+  utilizationScore: number;
+};
+
+export const getPists = async (): Promise<Pist[]> => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/pists`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch pists");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error in getPists:", error);
+    throw error;
+  }
+};
 
 export function getSkiRegions() {
   // regions of Austria

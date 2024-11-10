@@ -1,8 +1,10 @@
-"use client"; 
+"use client";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { CollapsedView } from "./Card/CollapsedCard";
+import { ExpandedView } from "./Card/ExpandedCard";
 
-type Area = {
+export type Area = {
   name: string;
   publishedAt: string;
   summary: string;
@@ -18,17 +20,15 @@ type AreaCardProps = {
   setActiveCard: (area: Area | null) => void;
 };
 
-export function AreaCard({ area, regionSlug, isActive, setActiveCard }: AreaCardProps) {
+export function AreaCard({ area, isActive, setActiveCard }: AreaCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Close card on "Escape" key press
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setActiveCard(null);
       }
     }
-
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [setActiveCard]);
@@ -50,45 +50,11 @@ export function AreaCard({ area, regionSlug, isActive, setActiveCard }: AreaCard
       onMouseLeave={() => setIsHovered(false)}
       style={{ borderRadius: 20 }}
     >
-      {area.image && (
-        <motion.img
-          src={process.env.NEXT_PUBLIC_PLACEHOLDER_IMAGE_URL}
-          alt={area.name}
-          layoutId={`image-${area.slug}`}
-          className="w-full h-40 object-cover"
-          style={{ borderRadius: 20 }}
-        />
+      {isActive ? (
+        <ExpandedView area={area} setActiveCard={setActiveCard} />
+      ) : (
+        <CollapsedView area={area} />
       )}
-      <div className="p-4">
-        <motion.h3
-          layoutId={`title-${area.slug}`}
-          className="text-xl font-semibold mb-2 text-neutral-900"
-        >
-          {area.name}
-        </motion.h3>
-        <motion.p
-          layoutId={`region-${area.slug}`}
-          className="text-neutral-500"
-        >
-          {area.region}
-        </motion.p>
-        {isActive && (
-          <motion.div
-            layoutId={`content-${area.slug}`}
-            className="mt-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <p>{area.summary}</p>
-            <button
-              onClick={() => setActiveCard(null)}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-            >
-              Close
-            </button>
-          </motion.div>
-        )}
-      </div>
     </motion.div>
   );
 }

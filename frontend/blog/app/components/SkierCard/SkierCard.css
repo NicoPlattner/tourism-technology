@@ -1,0 +1,70 @@
+.card {
+    background: linear-gradient(135deg, #1e81b0, #ffff);
+    border-radius: 15px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeIn 0.8s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .name {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  
+  .stats-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .stat-box {
+    text-align: center;
+    color: #333;
+  }
+  
+  .stat-number {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+  
+  .lift-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+  }
+  
+  .lift-item {
+    margin: 5px 0;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideIn 0.5s ease forwards;
+  }
+  
+  @keyframes slideIn {
+    0% { opacity: 0; transform: translateX(-20px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }

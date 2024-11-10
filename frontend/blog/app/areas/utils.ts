@@ -1,39 +1,15 @@
-import fs from 'fs'
-import { register } from 'module'
-import path from 'path'
 
-type Metadata = {
-  title: string
-  publishedAt: string
-  summary: string
-  image?: string
-}
 
-function parseFrontmatter(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/
-  let match = frontmatterRegex.exec(fileContent)
-  let frontMatterBlock = match![1]
-  let content = fileContent.replace(frontmatterRegex, '').trim()
-  let frontMatterLines = frontMatterBlock.trim().split('\n')
-  let metadata: Partial<Metadata> = {}
 
-  frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(': ')
-    let value = valueArr.join(': ').trim()
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value
-  })
-
-  return { metadata: metadata as Metadata, content }
-}
-
-function getMDXFiles(dir) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
-}
-
-function readMDXFile(filePath) {
-  let rawContent = fs.readFileSync(filePath, 'utf-8')
-  return parseFrontmatter(rawContent)
+export function getUser(id: string) {
+  return {
+      skiPassNumber: '#1-134-45-450312',
+      averageSpeed: 20,
+      liftsTaken: ['Sonnenbahn Ladis-Fiss', 'Planseggbahn', 'Rastbahn'],
+      kilometersSkied: 15.2,
+      minutesSkied: 202,
+      minutesLifted: 45,
+    }
 }
 
 export function getSkiRegions() {
@@ -83,11 +59,11 @@ export function getSkiAreas() {
   // mock data 
   return [
     {
-      name: 'Innsbruck Slopes',
+      name: 'Serfaus Fiss Ladis',
       publishedAt: '2024-01-01',
-      summary: "Great slopes near Innsbruck!",
-      image: '/images/innsbruck-slopes.jpg',
-      region: 'tyrol',
+      summary: "Familienurlaub in Tirol",
+      image: '/images/serfaus-foto.jpg',
+      region: 'Tirol',
       slug: 'innsbruck-slopes',
       content: 'Enjoy the scenic mountains of Innsbruck.',
     },

@@ -17,39 +17,39 @@ export function getSkiRegions() {
   return [
     {
       name: 'Tyrol',
-      slug: 'tyrol',
+      slug: 'Tyrol',
     },
     {
       name: 'Salzburg',
-      slug: 'salzburg',
+      slug: 'Salzburg',
     },
     {
       name: 'Carinthia',
-      slug: 'carinthia',
+      slug: 'Carinthia',
     },
     {
       name: 'Styria',
-      slug: 'styria',
+      slug: 'Styria',
     },
     {
       name: 'Vorarlberg',
-      slug: 'vorarlberg',
+      slug: 'Vorarlberg',
     },
     {
       name: 'Upper Austria',
-      slug: 'upper-austria',
+      slug: 'Upper-austria',
     },
     {
       name: 'Lower Austria',
-      slug: 'lower-austria',
+      slug: 'Lower-austria',
     },
     {
       name: 'Vienna',
-      slug: 'vienna',
+      slug: 'Vienna',
     },
     {
       name: 'Burgenland',
-      slug: 'burgenland',
+      slug: 'Burgenland',
     },
   ]
 

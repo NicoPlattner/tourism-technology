@@ -12,9 +12,8 @@ type Pist = {
   utilizationScore: number;
 };
 
-function showPistStat(e: Event, pists: Pist[], stat: string) {
+function showPistStat(e: any, pists: Pist[], stat: string) {
   e.stopPropagation()
-  // Get the <object> element
   const svgObject = document.querySelector("object");
 
   pists.forEach(pist => {
@@ -44,7 +43,7 @@ export const ExpandedView = ({ area, setActiveCard }: { area: Area; setActiveCar
   useEffect(() => {
     const fetchPists = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/pists`);
+        const response = await fetch(`http://127.0.0.1:5000/pists`);
         const data = await response.json();
         setPists(data);        
       } catch (error) {
